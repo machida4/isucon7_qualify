@@ -12,6 +12,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"net/http/pprof"
 	"os"
 	"strconv"
 	"strings"
@@ -23,8 +24,6 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
-
-	_ "net/http/pprof"
 )
 
 const (
@@ -723,11 +722,22 @@ func tRange(a, b int64) []int64 {
 }
 
 func main() {
-	// pprof
-	go func() {
-		log.Println(http.ListenAndServe("localhost:6060", nil))
-	}()
-
+		// pprof
+		m := http.NewServeMux()
+		m.Handle("/debug/pprof/", http.HandlerFunc(pprof.Index))
+		m.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
+		m.Handle("/debug/pprof/profile", http.HandlerFunc(pprof.Profile))
+		m.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
+		m.Handle("/debug/pprof/trace", http.HandlerFunc(pprof.Trace))
+	
+		s := &http.Server{
+			Addr:    "127.0.0.1:6060",
+			Handler: m,
+		}
+		go func() {
+			s.ListenAndServe()
+		}()
+	
 	e := echo.New()
 	funcs := template.FuncMap{
 		"add":    tAdd,
