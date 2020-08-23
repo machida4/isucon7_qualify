@@ -23,6 +23,8 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
+
+	_ "net/http/pprof"
 )
 
 const (
@@ -721,6 +723,11 @@ func tRange(a, b int64) []int64 {
 }
 
 func main() {
+	// pprof
+	go func() {
+		log.Println(http.ListenAndServe("localhost:6060", nil))
+	}()
+
 	e := echo.New()
 	funcs := template.FuncMap{
 		"add":    tAdd,
