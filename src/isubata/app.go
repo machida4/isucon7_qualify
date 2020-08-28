@@ -683,17 +683,17 @@ func postProfile(c echo.Context) error {
 	return c.Redirect(http.StatusSeeOther, "/")
 }
 
-func getIcon(c echo.Context) error {
-	var name string
-	var data []byte
-	err := db.QueryRow("SELECT name, data FROM image WHERE name = ?",
-		c.Param("file_name")).Scan(&name, &data)
-	if err == sql.ErrNoRows {
-		return echo.ErrNotFound
-	}
-	if err != nil {
-		return err
-	}
+// func getIcon(c echo.Context) error {
+// 	var name string
+// 	var data []byte
+// 	err := db.QueryRow("SELECT name, data FROM image WHERE name = ?",
+// 		c.Param("file_name")).Scan(&name, &data)
+// 	if err == sql.ErrNoRows {
+// 		return echo.ErrNotFound
+// 	}
+// 	if err != nil {
+// 		return err
+// 	}
 
 	mime := ""
 	switch true {
@@ -760,7 +760,7 @@ func main() {
 	e.POST("/login", postLogin)
 	e.GET("/logout", getLogout)
 
-	e.GET("/channel/:channel_id", getChannel)
+	e.GET("/channel/:cha=nel_id", getChannel)
 	e.GET("/message", getMessage)
 	e.POST("/message", postMessage)
 	e.GET("/fetch", fetchUnread)
@@ -771,7 +771,6 @@ func main() {
 
 	e.GET("add_channel", getAddChannel)
 	e.POST("add_channel", postAddChannel)
-	e.GET("/icons/:file_name", getIcon)
 
 	e.Start(":5000")
 }
