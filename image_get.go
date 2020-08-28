@@ -30,7 +30,7 @@ func main() {
 	for rows.Next() {
 		image := Image{}
 
-		err2 := rows.Scan(image.name, image.data)
+		err2 := rows.Scan(&image.name, &image.data)
 		if err != nil {
 			log.Fatalf(err2.Error())
 		}
