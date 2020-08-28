@@ -667,7 +667,7 @@ func postProfile(c echo.Context) error {
 		// if err != nil {
 		// 	return err
 		// }
-		err := ioutil.WriteFile("home/isucon/isubata/webapp/public/icons/" + avatarName, avatarData, 0666)
+		err := ioutil.WriteFile("/home/isucon/isubata/webapp/public/icons/" + avatarName, avatarData, 0666)
 		if err != nil {
 			return err
 		}
