@@ -35,9 +35,9 @@ func main() {
 			log.Fatalf(err2.Error())
 		}
 
-		fmt.Println(name)
+		fmt.Println(image.name)
 
-		err3 := ioutil.WriteFile(name, data, 0666)
+		err3 := ioutil.WriteFile(image.name, image.data, 0666)
 		if err != nil {
 			log.Fatalf(err3.Error())
 		}
