@@ -14,32 +14,32 @@ func main() {
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
-	defer db.Close();
+	defer db.Close()
 
 	rows, err := db.Query("SELECT 'name', 'data' FROM image")
 	if err != nil {
-		log.Fatalf(err.Error());
+		log.Fatalf(err.Error())
 	}
-	defer rows.Close();
+	defer rows.Close()
 
-	type Image struct (
+	type Image struct {
 		name string
 		data []byte
-	)
+	}
 
 	for rows.Next() {
 		image := Image{}
 
 		err2 := rows.Scan(image.name, image.data)
 		if err != nil {
-			log.Fatalf(err2.Error());
+			log.Fatalf(err2.Error())
 		}
 
 		fmt.Println(name)
 
 		err3 := ioutil.WriteFile(name, data, 0666)
 		if err != nil {
-			log.Fatalf(err3.Error());
+			log.Fatalf(err3.Error())
 		}
 	}
 }
