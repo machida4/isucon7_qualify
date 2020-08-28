@@ -695,19 +695,19 @@ func postProfile(c echo.Context) error {
 // 		return err
 // 	}
 
-	mime := ""
-	switch true {
-	case strings.HasSuffix(name, ".jpg"), strings.HasSuffix(name, ".jpeg"):
-		mime = "image/jpeg"
-	case strings.HasSuffix(name, ".png"):
-		mime = "image/png"
-	case strings.HasSuffix(name, ".gif"):
-		mime = "image/gif"
-	default:
-		return echo.ErrNotFound
-	}
-	return c.Blob(http.StatusOK, mime, data)
-}
+// 	mime := ""
+// 	switch true {
+// 	case strings.HasSuffix(name, ".jpg"), strings.HasSuffix(name, ".jpeg"):
+// 		mime = "image/jpeg"
+// 	case strings.HasSuffix(name, ".png"):
+// 		mime = "image/png"
+// 	case strings.HasSuffix(name, ".gif"):
+// 		mime = "image/gif"
+// 	default:
+// 		return echo.ErrNotFound
+// 	}
+// 	return c.Blob(http.StatusOK, mime, data)
+// }
 
 func tAdd(a, b int64) int64 {
 	return a + b
