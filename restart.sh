@@ -4,3 +4,4 @@ git pull
 make
 sudo systemctl restart isubata.golang.service
 sudo systemctl restart nginx.service
+sudo systemctl restart mysql.service
