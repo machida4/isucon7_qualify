@@ -16,7 +16,7 @@ func main() {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT 'name', 'data' FROM image")
+	rows, err := db.Query("SELECT name, data FROM image")
 	if err != nil {
 		log.Fatalf(err.Error())
 	}
