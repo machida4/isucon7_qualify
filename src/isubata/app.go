@@ -761,7 +761,7 @@ func main() {
 	e.POST("/login", postLogin)
 	e.GET("/logout", getLogout)
 
-	e.GET("/channel/:cha=nel_id", getChannel)
+	e.GET("/channel/:chanel_id", getChannel)
 	e.GET("/message", getMessage)
 	e.POST("/message", postMessage)
 	e.GET("/fetch", fetchUnread)
